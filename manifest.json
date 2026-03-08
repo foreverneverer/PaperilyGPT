@@ -1,0 +1,44 @@
+{
+  "manifest_version": 3,
+  "name": "PaperilyGPT-论文一键免费解析助手",
+  "description": "您的AI科研伴侣。一键深度解析论文，连接全球学者讨论，共享海量资源，让科研更高效。",
+  "version": "0.1.1",
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  },
+  "action": {
+    "default_icon": "icon.png"
+  },
+  "permissions": ["storage", "unlimitedStorage", "cookies", "downloads"],
+  "host_permissions": ["<all_urls>"],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self';"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["http://*/*", "https://*/*"],
+      "js": [
+        "marked.min.js",
+        "lib/katex/katex.min.js",
+        "lib/katex/contrib/auto-render.min.js",
+        "content.js"
+      ],
+      "css": [
+        "lib/katex/katex.min.css",
+        "content.css"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["lib/katex/fonts/*"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

@@ -1,0 +1,1001 @@
+/* Apple-inspired design system variables */
+:root {
+  /* Colors */
+  --apple-primary: #007AFF;
+  --apple-primary-hover: #0056CC;
+  --apple-success: #34C759;
+  --apple-danger: #FF3B30;
+  --apple-warning: #FFCC00;
+  --apple-background: #FFFFFF;
+  --apple-background-secondary: #F2F2F7;
+  --apple-border: #C7C7CC;
+  --apple-text: #1d1d1f;
+  --apple-text-secondary: #86868b;
+  --apple-text-tertiary: #C7C7CC;
+  
+  /* Spacing */
+  --apple-spacing-xs: 4px;
+  --apple-spacing-sm: 8px;
+  --apple-spacing-md: 12px;
+  --apple-spacing-lg: 16px;
+  --apple-spacing-xl: 20px;
+  
+  /* Radius */
+  --apple-radius-sm: 8px;
+  --apple-radius-md: 12px;
+  --apple-radius-lg: 16px;
+  --apple-radius-full: 9999px;
+  
+  /* Shadows */
+  --apple-shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.1);
+  --apple-shadow-md: 0 4px 8px rgba(0, 0, 0, 0.05), 0 2px 4px rgba(0, 0, 0, 0.1);
+  --apple-shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.08), 0 4px 8px rgba(0, 0, 0, 0.12);
+  
+  /* Transitions */
+  --apple-transition: all 0.2s ease-in-out;
+}
+
+#paperily-floating-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 2147483647;
+  display: flex;
+  flex-direction: column;
+  gap: var(--apple-spacing-md);
+}
+
+.paperily-btn {
+  padding: 12px 16px;
+  border-radius: var(--apple-radius-full);
+  border: 1px solid var(--apple-border);
+  background: var(--apple-background);
+  color: var(--apple-text);
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: var(--apple-shadow-md);
+  transition: var(--apple-transition);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.paperily-btn:hover {
+  box-shadow: var(--apple-shadow-lg);
+  transform: translateY(-1px);
+}
+
+.paperily-btn:active {
+  transform: translateY(0);
+  box-shadow: var(--apple-shadow-sm);
+}
+
+.paperily-btn.primary {
+  background: var(--apple-primary);
+  border-color: var(--apple-primary);
+  color: white;
+}
+
+.paperily-btn.primary:hover {
+  background: var(--apple-primary-hover);
+  border-color: var(--apple-primary-hover);
+}
+
+.paperily-btn.danger {
+  background: var(--apple-danger);
+  border-color: var(--apple-danger);
+  color: white;
+}
+
+.paperily-btn.danger:hover {
+  background: #CC2D24;
+  border-color: #CC2D24;
+}
+
+.paperily-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--apple-shadow-sm);
+}
+
+.paperily-btn.active {
+  background: var(--apple-primary);
+  border-color: var(--apple-primary);
+  color: white;
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2), var(--apple-shadow-md);
+}
+
+#paperily-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2147483646;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(8px);
+}
+
+#paperily-modal {
+  width: min(920px, calc(100vw - 40px));
+  max-height: min(720px, calc(100vh - 40px));
+  background: var(--apple-background);
+  border-radius: var(--apple-radius-lg);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 10px 20px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#paperily-modal-header {
+  padding: var(--apple-spacing-lg);
+  border-bottom: 1px solid var(--apple-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--apple-spacing-md);
+  background: var(--apple-background);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+#paperily-modal-header-left {
+  display: flex;
+  align-items: center;
+  gap: var(--apple-spacing-md);
+  min-width: 0;
+  flex: 1;
+}
+
+#paperily-modal-header-right {
+  display: flex;
+  align-items: center;
+  gap: var(--apple-spacing-lg);
+  flex-shrink: 0;
+}
+
+#paperily-modal-header-actions-left {
+  display: flex;
+  align-items: center;
+  gap: var(--apple-spacing-md);
+}
+
+#paperily-modal-header-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--apple-spacing-md);
+}
+
+#paperily-modal-title {
+  font-size: 17px;
+  color: var(--apple-text);
+  font-weight: 600;
+  white-space: normal;
+  word-break: break-word;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  /* Removed unnecessary max-width that was causing premature wrapping */
+  flex-shrink: 1;
+}
+
+#paperily-modal-close {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+  padding: var(--apple-spacing-xs);
+  color: var(--apple-text-secondary);
+  border-radius: var(--apple-radius-full);
+  transition: var(--apple-transition);
+  -webkit-tap-highlight-color: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+}
+
+#paperily-modal-close:hover {
+  background: var(--apple-background-secondary);
+  color: var(--apple-text);
+}
+
+/* Markdown styling */
+.paperily-analyze-modal .paperily-markdown h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--apple-text);
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+
+.paperily-analyze-modal .paperily-markdown h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--apple-text);
+  margin-top: 14px;
+  margin-bottom: 4px;
+}
+
+/* 调整段落与标题之间的间距 */
+.paperily-markdown p {
+  margin-top: 4px !important; /* 减小段落顶部与标题的间距 */
+  margin-bottom: 8px !important;
+}
+
+#paperily-modal-close:active {
+  opacity: 0.7;
+}
+
+#paperily-modal-body {
+  padding: 12px var(--apple-spacing-lg); /* 减小顶部内边距 */
+  overflow: auto;
+  flex: 1;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.paperily-field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--apple-spacing-xs);
+  margin-bottom: var(--apple-spacing-md);
+}
+
+.paperily-label {
+  font-size: 12px;
+  color: var(--apple-text-secondary);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.paperily-input {
+  border: 1px solid var(--apple-border);
+  border-radius: var(--apple-radius-md);
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--apple-background);
+  color: var(--apple-text);
+  transition: var(--apple-transition);
+  outline: none;
+}
+
+.paperily-input:focus {
+  border-color: var(--apple-primary);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+.paperily-textarea {
+  border: 1px solid var(--apple-border);
+  border-radius: var(--apple-radius-md);
+  padding: 10px 12px;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  background: var(--apple-background);
+  color: var(--apple-text);
+  min-height: 120px;
+  resize: vertical;
+  transition: var(--apple-transition);
+  outline: none;
+}
+
+.paperily-textarea:focus {
+  border-color: var(--apple-primary);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+.paperily-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--apple-spacing-md);
+  padding-top: var(--apple-spacing-md);
+  padding-bottom: var(--apple-spacing-lg);
+  padding-right: var(--apple-spacing-lg);
+  padding-left: var(--apple-spacing-lg);
+  border-top: 1px solid var(--apple-border);
+  background: var(--apple-background);
+}
+
+/* 移除回复表单中按钮上方的分隔线 */
+.paperily-reply-form .paperily-actions {
+  border-top: none;
+  padding-top: var(--apple-spacing-xs);
+  padding-bottom: 0;
+}
+
+#paperily-modal-footer {
+  padding: var(--apple-spacing-lg);
+  border-top: 1px solid var(--apple-border);
+  background: var(--apple-background);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--apple-spacing-md);
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+}
+
+.paperily-pre {
+  white-space: pre-wrap;
+  word-break: break-word;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  color: #111;
+}
+
+.paperily-comment-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 5px;
+}
+
+.paperily-comment-actions-left {
+  display: none;
+}
+
+.paperily-comment-actions-right {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+}
+
+.paperily-markdown {
+  font-size: 13px;
+  color: #111;
+  line-height: 1.55;
+}
+
+.paperily-markdown h1,
+.paperily-markdown h2,
+.paperily-markdown h3,
+.paperily-markdown h4,
+.paperily-markdown h5,
+.paperily-markdown h6 {
+  margin-top: 18px !important; /* 与上一段落保持适当距离 */
+  margin-bottom: 6px !important; /* 与下一段落保持适当距离 */
+  line-height: 1.25;
+}
+
+.paperily-markdown p {
+  margin: 4px 0 8px !important;
+  text-indent: 0;
+}
+
+.paperily-markdown li p {
+  text-indent: 0;
+  margin-top: 0 !important;
+}
+
+.paperily-markdown ul,
+.paperily-markdown ol {
+  margin: 4px 0 8px;
+  padding-left: 1.5em;
+  list-style-position: outside;
+}
+
+.paperily-markdown ul ul,
+.paperily-markdown ol ul,
+.paperily-markdown ul ol,
+.paperily-markdown ol ol {
+  padding-left: 1em;
+  margin: 4px 0;
+}
+
+/* 针对分析模态框中的列表设置更紧凑的间距 */
+.paperily-analyze-modal .paperily-markdown ul,
+.paperily-analyze-modal .paperily-markdown ol {
+  margin-top: 2px !important;
+  margin-bottom: 6px !important;
+}
+
+.paperily-markdown li {
+  margin: 4px 0;
+}
+
+.paperily-markdown code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  font-size: 12px;
+  background: rgba(0, 0, 0, 0.06);
+  padding: 1px 5px;
+  border-radius: 6px;
+}
+
+.paperily-markdown pre {
+  margin: 10px 0;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.06);
+  border-radius: 10px;
+  overflow: auto;
+}
+
+.paperily-markdown pre code {
+  background: transparent;
+  padding: 0;
+}
+
+.paperily-markdown a {
+  color: #3498db;
+  text-decoration: none;
+}
+
+.paperily-markdown a:hover {
+  text-decoration: underline;
+}
+
+/* Table Styling */
+.paperily-table-wrapper {
+  overflow-x: auto;
+  margin: 16px 0;
+  border-radius: 8px;
+  border: 1px solid var(--apple-border);
+}
+
+.paperily-markdown table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.paperily-markdown th,
+.paperily-markdown td {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--apple-border);
+  text-align: left;
+}
+
+.paperily-markdown th {
+  background-color: var(--apple-background-secondary);
+  font-weight: 600;
+  color: var(--apple-text);
+}
+
+.paperily-markdown tr:last-child td {
+  border-bottom: none;
+}
+
+.paperily-markdown tr:nth-child(even) {
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.paperily-comments {
+  display: flex;
+  flex-direction: column;
+  gap: var(--apple-spacing-md);
+}
+
+.paperily-comment-item {
+  border: 1px solid var(--apple-border);
+  border-radius: var(--apple-radius-md);
+  padding: var(--apple-spacing-md);
+  background: var(--apple-background);
+  transition: var(--apple-transition);
+}
+
+.paperily-comment-item:hover {
+  box-shadow: var(--apple-shadow-sm);
+}
+
+/* 为所有回复设置浅灰色背景 */
+.paperily-comment-item.paperily-indent-1 {
+  background-color: #F5F5F5;
+}
+
+.paperily-comment-header {
+  display: flex;
+  align-items: baseline;
+  gap: var(--apple-spacing-md);
+  margin-bottom: var(--apple-spacing-xs);
+}
+
+.paperily-comment-user {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--apple-text);
+}
+
+.paperily-comment-date {
+  font-size: 12px;
+  color: var(--apple-text-secondary);
+  white-space: nowrap;
+}
+
+.paperily-comment-content {
+  font-size: 13px;
+  color: var(--apple-text);
+  line-height: 1.45;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.paperily-comment-actions {
+  margin-top: var(--apple-spacing-xs);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--apple-spacing-md);
+}
+
+.paperily-comment-actions-left,
+.paperily-comment-actions-right {
+  display: flex;
+  align-items: center;
+  gap: var(--apple-spacing-md);
+}
+
+.paperily-link-btn {
+  border: none;
+  background: transparent;
+  color: var(--apple-primary);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: var(--apple-radius-sm);
+  transition: var(--apple-transition);
+}
+
+.paperily-link-btn:hover {
+  background: var(--apple-background-secondary);
+}
+
+.paperily-link-btn.danger {
+  color: var(--apple-danger);
+}
+
+.paperily-link-btn.danger:hover {
+  background: rgba(255, 59, 48, 0.1);
+}
+
+.paperily-comment-link {
+  color: var(--apple-primary);
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  user-select: none;
+  padding: 4px 8px;
+  border-radius: var(--apple-radius-sm);
+  transition: var(--apple-transition);
+}
+
+.paperily-comment-link:hover {
+  background: var(--apple-background-secondary);
+  text-decoration: none;
+}
+
+.paperily-comment-link.active {
+  color: var(--apple-danger);
+  background: rgba(255, 59, 48, 0.1);
+}
+
+/* Pagination link styles */
+.paperily-pagination-link {
+  border: none;
+  background: transparent;
+  color: var(--apple-primary);
+  font-size: 12px;
+  cursor: pointer;
+  text-decoration: none;
+  padding: 4px 8px;
+  border-radius: var(--apple-radius-sm);
+  transition: var(--apple-transition);
+}
+
+.paperily-pagination-link:hover {
+  background: var(--apple-background-secondary);
+  text-decoration: none;
+}
+
+.paperily-pagination-link:disabled {
+  color: var(--apple-text-tertiary);
+  cursor: not-allowed;
+}
+
+.paperily-divider {
+  height: 1px;
+  background: var(--apple-border);
+  margin: var(--apple-spacing-md) 0;
+}
+
+.paperily-analyze-modal {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: -8px; /* 消除第一个标题上方的空白 */
+}
+
+/* 确保分析模态框中的段落间距正确 */
+.paperily-analyze-modal .paperily-markdown p {
+  margin-top: 4px !important;
+  margin-bottom: 8px !important;
+}
+
+
+.paperily-reply-form {
+  margin-top: 10px;
+}
+
+.paperily-indent-1 {
+  margin-left: 18px;
+}
+
+.paperily-indent-2 {
+  margin-left: 36px;
+}
+
+.paperily-indent-3 {
+  margin-left: 54px;
+}
+
+.paperily-user-panel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--apple-spacing-md);
+}
+
+.paperily-section-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--apple-spacing-md);
+}
+
+.paperily-section-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--apple-text);
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.paperily-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--apple-spacing-xs);
+}
+
+.paperily-list-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--apple-spacing-md);
+  padding: var(--apple-spacing-xs) 0;
+  border-radius: var(--apple-radius-sm);
+  transition: var(--apple-transition);
+}
+
+.paperily-list-item:hover {
+  background: #F5F5F5;
+}
+
+.paperily-list-right {
+  display: flex;
+  align-items: baseline;
+  gap: var(--apple-spacing-md);
+  white-space: nowrap;
+}
+
+.paperily-list-link {
+  border: none;
+  background: transparent;
+  padding: var(--apple-spacing-xs) var(--apple-spacing-sm);
+  color: var(--apple-text);
+  cursor: pointer;
+  text-align: left;
+  font-size: 13px;
+  line-height: 1.3;
+  flex: 1;
+  border-radius: var(--apple-radius-sm);
+  transition: var(--apple-transition);
+}
+
+.paperily-list-link:hover {
+  color: var(--apple-primary);
+}
+
+.paperily-list-meta {
+  font-size: 12px;
+  color: var(--apple-text-secondary);
+  white-space: nowrap;
+}
+
+.paperily-empty {
+  font-size: 12px;
+  color: var(--apple-text-secondary);
+  text-align: center;
+  padding: var(--apple-spacing-lg) 0;
+}
+
+.no-result {
+  font-size: 13px;
+  color: var(--apple-text-secondary);
+  text-align: center;
+  padding: var(--apple-spacing-xl) 0;
+  font-style: italic;
+}
+
+#paperily-toast {
+  position: fixed;
+  left: 50%;
+  top: 22px;
+  transform: translateX(-50%);
+  z-index: 2147483647;
+  background: rgba(0, 0, 0, 0.82);
+  color: #fff;
+  padding: 12px 20px;
+  border-radius: 999px;
+  font-size: 14px;
+  display: none;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: all 0.3s ease;
+}
+
+#paperily-toast:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateX(-50%) translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Search Modal Styles */
+.paperily-search-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--apple-spacing-xl);
+}
+
+.search-box {
+  display: flex;
+  gap: var(--apple-spacing-md);
+  width: 100%;
+  margin: 0;
+}
+
+.search-box input[type="text"] {
+  flex: 1;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  height: 44px;
+  border: 1px solid var(--apple-border);
+  border-radius: var(--apple-radius-md);
+  outline: none;
+  box-sizing: border-box;
+  background: var(--apple-background);
+  color: var(--apple-text);
+  transition: var(--apple-transition);
+}
+
+.search-box input[type="text"]:focus {
+  border-color: var(--apple-primary);
+  box-shadow: 0 0 0 3px rgba(0, 122, 255, 0.2);
+}
+
+.search-btn {
+  padding: 0 var(--apple-spacing-lg);
+  font-size: 14px;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  height: 44px;
+  background-color: var(--apple-primary);
+  color: white;
+  border: 1px solid var(--apple-primary);
+  border-radius: var(--apple-radius-md);
+  cursor: pointer;
+  transition: var(--apple-transition);
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--apple-shadow-sm);
+}
+
+.search-btn:hover {
+  background-color: var(--apple-primary-hover);
+  box-shadow: var(--apple-shadow-md);
+  transform: translateY(-1px);
+}
+
+.search-btn:active {
+  transform: translateY(0);
+  box-shadow: var(--apple-shadow-sm);
+}
+
+.results-container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--apple-spacing-lg);
+  height: 100%;
+}
+
+/* 顶部两个面板的容器 */
+.results-top-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--apple-spacing-lg);
+}
+
+.result-panel {
+  border: 1px solid var(--apple-border);
+  border-radius: var(--apple-radius-lg);
+  padding: var(--apple-spacing-md);
+  background-color: var(--apple-background);
+  box-shadow: var(--apple-shadow-sm);
+  transition: var(--apple-transition);
+}
+
+.result-panel:hover {
+  box-shadow: var(--apple-shadow-md);
+}
+
+/* 谷歌学术和百度学术面板样式 */
+.results-top-row .result-panel {
+  max-height: 100px;
+  overflow-y: hidden;
+}
+
+/* 共享资源面板样式 */
+.results-container > .result-panel {
+  flex-grow: 1;
+  overflow-y: auto;
+}
+
+.result-panel h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: var(--apple-spacing-md);
+  color: var(--apple-text);
+  border-bottom: 1px solid var(--apple-border);
+  padding-bottom: var(--apple-spacing-sm);
+}
+
+.result-content {
+  min-height: 40px;
+}
+
+.placeholder {
+  color: var(--apple-text-secondary);
+  font-style: italic;
+  text-align: center;
+  padding: var(--apple-spacing-sm) 0;
+}
+
+.loading {
+  color: var(--apple-text);
+  text-align: center;
+  padding: var(--apple-spacing-xl) 0;
+}
+
+.error {
+  color: var(--apple-danger);
+  text-align: center;
+  padding: var(--apple-spacing-xl) 0;
+}
+
+.result-item {
+  margin-bottom: var(--apple-spacing-md);
+}
+
+.result-item a {
+  color: var(--apple-primary);
+  text-decoration: none;
+  transition: var(--apple-transition);
+}
+
+.result-item a:hover {
+  text-decoration: underline;
+}
+
+/* Shared Resources Styles */
+.paper-item {
+  border: none;
+  border-radius: var(--apple-radius-md);
+  padding: var(--apple-spacing-md);
+  margin-bottom: var(--apple-spacing-xs);
+  background-color: var(--apple-background);
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center;
+  justify-content: space-between;
+  transition: var(--apple-transition);
+  width: 100% !important;
+  box-sizing: border-box !important;
+}
+
+.paper-item:hover {
+  background-color: #F5F5F5;
+}
+
+.paper-item h4 {
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
+  color: var(--apple-text);
+  line-height: 1.3;
+  min-height: auto;
+  display: block;
+  white-space: normal;
+  flex: 1;
+  margin-right: var(--apple-spacing-md);
+}
+
+.paper-actions {
+  display: flex;
+  gap: var(--apple-spacing-sm);
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  margin-top: 0;
+  white-space: nowrap;
+}
+
+.action-btn {
+  padding: 4px 8px;
+  font-size: 12px;
+  text-decoration: none;
+  color: var(--apple-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  text-align: right;
+  border-radius: var(--apple-radius-sm);
+  transition: var(--apple-transition);
+}
+
+.action-btn:hover {
+  background: var(--apple-background);
+  text-decoration: none;
+}
+
+.view-btn {
+  color: var(--apple-primary);
+}
+
+.view-btn:hover {
+  text-decoration: none;
+}
+
+.download-btn {
+  color: var(--apple-primary);
+}
+
+.download-btn:hover {
+  text-decoration: none;
+}
+
+.no-download {
+  color: var(--apple-text-secondary);
+  font-style: italic;
+  font-size: 12px;
+  padding: 4px 8px;
+  display: inline-block;
+  border-radius: var(--apple-radius-sm);
+  background: var(--apple-background);
+}
+
+/* Make the shared resources panel span the full width */
+.result-panel:nth-child(3) {
+  grid-column: span 2;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .results-top-row {
+    grid-template-columns: 1fr;
+  }
+  .result-panel:nth-child(3) {
+    grid-column: span 1;
+  }
+}
+
+/* Ensure the modal content doesn't overflow */
+#paperily-modal-body {
+  overflow-y: auto;
+  padding: var(--apple-spacing-lg);
+}
